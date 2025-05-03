@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Play Page</title>
+</head>
+
+
+<style>
+
+  body {
+    text-align: center;
+  }
+
+  .word {
+    letter-spacing: 2rem;
+    font-size: 2rem;
+  }
+
+  .letters-container {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    width: 30%;
+    flex-wrap: wrap;
+  }
+
+  .letter-button {
+    cursor: pointer;
+    padding: 0.3rem 0.6rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.5rem;
+  }
+
+</style>
+
+<body>
+
+  <h2 class="word" th:text="${hangmanGame.currentWord}"></h2>
+
+  <form th:action="@{/guessLetter/{id}(id=${hangmanGame.id})}" method="POST" >
+
+    <div class="letters-container">
+
+      <div th:each="currentLetter : ${letters}"
+           th:if="${!hangmanGame.currentWord.contains(currentLetter.toString())}">
+
+        <button
+            class="letter-button"
+            type="submit"
+            name="guessLetter"
+            th:value="${currentLetter}"
+            th:text="${currentLetter}"
+            th:disabled="${hangmanGame.wrongLetters.contains(currentLetter)}">
+        </button>
+
+      </div>
+
+    </div>
+
+  </form>
+
+</body>
+</html>

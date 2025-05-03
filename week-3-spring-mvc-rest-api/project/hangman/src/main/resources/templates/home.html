@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Start Hangman Page</title>
+</head>
+<body>
+  <h2>You can start you game here</h2>
+  <form th:action="@{/start}" method="POST">
+    <input type="submit" value="Start Game"/>
+  </form>
+</body>
+</html>
