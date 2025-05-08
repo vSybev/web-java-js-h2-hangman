@@ -18,10 +18,10 @@ public class HangmanGameService {
   private static final int INITIAL_WRONG_GUESSES = 0;
   private static final String PLACEHOLDER_SYMBOL = "_";
 
-  private List<HangmanGame> storedGamesCollection = new ArrayList<>();
+  private final List<HangmanGame> storedGamesCollection = new ArrayList<>();
 
-  private GenericWordProvider wordProvider;
-  private GameProperties gameProperties;
+  private final GenericWordProvider wordProvider;
+  private final GameProperties gameProperties;
 
   public HangmanGameService(GenericWordProvider wordProvider, GameProperties gameProperties){
     this.wordProvider = wordProvider;
@@ -136,5 +136,9 @@ public class HangmanGameService {
       stringBuilder.append(PLACEHOLDER_SYMBOL);
     }
     return stringBuilder.toString();
+  }
+
+  public List<HangmanGame> getAllGames() {
+    return new ArrayList<>(storedGamesCollection);
   }
 }
